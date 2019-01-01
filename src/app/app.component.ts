@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular7';
+  public DataOfParent = "DataOfParent"; 
+  public messageFromChild = "Data to be changed";
 }

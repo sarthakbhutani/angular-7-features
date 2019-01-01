@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
@@ -80,7 +80,7 @@ import { APP_BASE_HREF } from '@angular/common';
   </ng-template> 
 
   <div *ngIf="displayblock; then thenBlock; else elseBlock"></div>
-  <ng-template #thenBlock> 
+  <ng-template #thenBlock>
     <h2 #thenBlock>
       Yes, then.
     </h2>
@@ -94,9 +94,31 @@ import { APP_BASE_HREF } from '@angular/common';
   <div *ngFor="let color of colors; index as i; last as l">
     <h3> {{i}} {{color}} {{l}}</h3>
   </div>
+  <h2>
+    Component Interaction
+  </h2>
 
+  <h2>
+    Hello , {{dataFromParent}}
+  </h2>
+  <button (click)="fireDataTransport()">Send Data to Parent Component</button>
   </div>
+
+  <h2> {{name | lowercase}}</h2>
+  <h2> {{name | uppercase}}</h2>
+  <h2> {{name | titlecase}}</h2>
+  <h2> {{name | slice : 3}}</h2>
+  <h2> {{137.1223 | number : '4.2-3'}}</h2>
+  <h2> {{0.133 | percent}}</h2>
+  <h2> {{locDate}}</h2>
+  <h2> {{locDate | date}}</h2>
+  <h2> {{locDate| date : 'short'}}</h2>
+  <h2> {{locDate| date : 'long'}}</h2>
+  <h2> {{12| currency}}</h2>
+  <h2> {{12| currency: 'INR'}}</h2>
+  <h2> {{12| currency: 'INR': 'code'}}</h2>
     </div>`,
+     
   styles: [`p{
     text-align : center; 
   }
@@ -153,66 +175,12 @@ export class TestComponent implements OnInit {
     console.log(input);
     console.log(input.value);
   }
+
+  @Input('parentData') public dataFromParent;
+  @Output() public childEvent = new EventEmitter();
+  fireDataTransport(){
+    this.childEvent.emit('Whassup boi - Straight outta child Component');
+  }
+
+  public locDate = new Date();
 }
-
-// function newFunction(): string {
-//   return `<div>
-//   <h1>
-//     Welcome {{name}}
-//   </h1>
-//   <h1>
-//     {{name.lenght}}
-//   </h1>
-//   <h1>
-//     Welcome {{name.toUpperCase()}}
-//   </h1>
-//   <h1>
-//     Welcome {{name.toLowerCase()}}
-//   </h1>
-//   <h1>
-//     {{getUrl()}}
-//   </h1>
-//   <input type="text" value="Placeholder" bind-disabled = "isDisabled">
-//   <h1 [class]="textSuccess">
-//     Bhutani
-//   </h1>
-//   <h1 bind-class = "textFailiure">
-//     Bhutani
-//   </h1>
-//   <h1 [class]="textSpecial">
-//     Bhutani
-//   </h1>
-//   <h1 [class.text-failiure]="hasError">
-//     Bhutani
-//   </h1>
-//   <h1 [ngClass]="messageClasses">
-//     Bhutani
-//   </h1>
-
-//   <!--Style Binding-->
-//   <h1 [style.color]=" 'green' ">
-//   Style Binding
-//   </h1>
-//   <h1 [style.color]="setGreen">
-//     Bhutani
-//   </h1>
-//   <h1 [ngStyle]="setStyles">
-//     Bhutani
-//   </h1>
-//   <h1 [style.color]="hasError? 'red' : 'green' ">
-//     Bhutani
-//   </h1>
-//   <button (onclick) = "onClick()">
-//     Event Binding
-//   </button>
-  
-//   <h2>
-//   {{greeting}}
-//   </h2>
-//   <h2>
-//     Event Binding
-//   </h2>
-
-//   </div>`;
-// }
-
