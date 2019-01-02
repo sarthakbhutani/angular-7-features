@@ -1,11 +1,17 @@
 import { Injectable, ErrorHandler } from '@angular/core';
-// import {Observable} from 'rxjs/observable';
+// import {Observable} from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EmployeeI } from './EmployeeI';
-import { Observable } from 'rxjs';
+
+// import { Observable, observable } from 'rxjs';
 // import 'rxjs';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/observable/throw';
+// import 'rxjs/add/operator/catch'; 
+// import 'rxjs/add/observable/throw';
+// import {Observable} from 'rxjs/Rx'; //solved issue for CATCH and throw operators
+import { throwError, Observable } from 'rxjs'
+import { catchError } from 'rxjs/operators'﻿
+ 
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +20,7 @@ export class EmployeeService {
 
   constructor(private http : HttpClient) { }
 
-  private _url = '/assets/employeeData.json';
+  private _url = '/assets/employeeDataaaaa.json';
 
   getEmployee() : Observable<EmployeeI[]>{
     // For simple Http request
@@ -23,12 +29,13 @@ export class EmployeeService {
     //   {"name" : "sarthak" , "id" : "3"},
     //   {"name" : "sarthak" , "id" : "3"}
     // ];
-    return this.http.get<EmployeeI[]>(this._url);
-                              // .catch(this.ErrorHandler());
+    return this.http.get<EmployeeI[]>(this._url)
+                              // .catch(this.errorHandler);
+                              .pipe(catchError(this.errorHandler));
     //Http Request
   }
-  // errorHandler(error : HttpErrorResponse){
-  //   return this.observable.throw(error.message || "Server ERROR!")
-  // }
+  errorHandler(error : HttpErrorResponse){
+    return Observable.throw(error.message || "Server ERROR!");
+  }
 
 }
