@@ -3,6 +3,8 @@
   <h1>
     Welcome to {{ title }}! {{messageFromChild}}
   </h1>
-<app-test (childEvent) = "messageFromChild=$event"[parentData]= " DataOfParent"></app-test>
+<app-test (childEvent) = "messageFromChild=$event" [parentData]= " DataOfParent"></app-test>
 <h2>{{messageFromChild}}</h2>
+  <!-- <app-employee-details></app-employee-details> -->
+<app-employee-list></app-employee-list>
 <router-outlet></router-outlet>

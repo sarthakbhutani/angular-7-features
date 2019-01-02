@@ -151,7 +151,7 @@ export class TestComponent implements OnInit {
   public displayBlock = false;
   messageClasses={
     "text-success" : !this.hasError,
-    "text-failiure" : this.hasError,
+    "text-failiure" : this.hasError, 
     "text-italics" : this.isSpecial
   }
 
