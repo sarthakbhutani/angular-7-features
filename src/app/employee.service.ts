@@ -1,17 +1,17 @@
 import { Injectable, ErrorHandler } from '@angular/core';
-// import {Observable} from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EmployeeI } from './EmployeeI';
 
+// import {Observable} from 'rxjs/Observable';
 // import { Observable, observable } from 'rxjs';
 // import 'rxjs';
 // import 'rxjs/add/operator/catch'; 
 // import 'rxjs/add/observable/throw';
 // import {Observable} from 'rxjs/Rx'; //solved issue for CATCH and throw operators
-import { throwError, Observable } from 'rxjs'
-import { catchError } from 'rxjs/operators'﻿
- 
 
+
+import { throwError, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class EmployeeService {
 
   constructor(private http : HttpClient) { }
 
-  private _url = '/assets/employeeDataaaaa.json';
+  private _url = '/assets/employeeData.json';
 
   getEmployee() : Observable<EmployeeI[]>{
     // For simple Http request
